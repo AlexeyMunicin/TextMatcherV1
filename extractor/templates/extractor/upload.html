@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Text Extractor</title>
+</head>
+
+<body>
+  <h1>Upload the image to extract text</h1>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="image">Выберите изображение</label>
+    <input type="file" name="image" accept="image/*" required>
+    <button type="submit">Загрузить</button>
+  </form>
+
+  {% if text %}
+  <h2>Extracted Text:</h2>
+  <p>{{ text }}</p>
+  {% endif %}
+
+  {% if image_url %}
+  <h2>Uploaded Image:</h2>
+  <img src="{{ image_url }}" alt="Uploaded image" style="max-width: 500px;">
+  {% endif %}
+</body>
+</html>
